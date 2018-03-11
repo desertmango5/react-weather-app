@@ -9,3 +9,6 @@
   * Use React Router to display hourly forecast for day `/name-of-day`
 * Experiment with vx graphics library
 
+---
+
+![React Weather App](https://github.com/MichaelKeithM/images/blob/master/react-weather-app.jpg)
