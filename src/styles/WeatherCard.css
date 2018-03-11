@@ -1,0 +1,42 @@
+:root {
+  --day-color: #999;
+  --high-color: #777;
+  --low-color: #aaa;
+}
+
+/* WEATHER CARD COMPONENT */
+.weather-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10rem;
+  padding: 1rem 0 0.5rem 0;
+}
+
+.weather-card__day {
+  font-size: 1.8rem;
+  color: var(--day-color);
+}
+
+.weather-card__icon {
+  height: 6rem;
+  width: 6rem;
+  margin: 0.5rem 0;
+  opacity: 0.8;
+}
+
+.weather-card__temp {
+  display: flex;
+}
+
+.weather-card__temp-high {
+  font-size: 1.5rem;
+  color: var(--high-color);
+  margin-right: 0.2rem
+}
+
+.weather-card__temp-low {
+  font-size: 1.5rem;
+  color: var(--low-color);
+  margin-left: 0.2rem
+}

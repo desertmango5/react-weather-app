@@ -1,0 +1,22 @@
+.title {
+  font-size: 3rem;
+  text-align: center;
+  margin: 5rem;
+  line-height: 3.5rem;
+}
+
+.weather-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 4rem;
+}
+
+.weather-card {
+  margin: 0.5rem;
+}
+
+.weather-card:first-child {
+  border: 1px solid #ddd;
+  background: #eee;
+}
