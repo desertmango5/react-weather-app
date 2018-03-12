@@ -3,8 +3,7 @@ import '../styles/default-styles.css';
 import '../styles/App.css';
 import { apiKey } from '../private';
 import WeatherCard from './WeatherCard';
-import ConvertTemp from './ConvertTemp';
-import weatherData from '../data/weatherData';
+import ConvertTempButton from './ConvertTempButton';
 
 class App extends Component {
   state = {
@@ -13,6 +12,7 @@ class App extends Component {
     error: null,
     forecasts: {},
     tempUnit: 'F',
+    city: null,
   };
 
   // connect to Open Weather API
@@ -25,6 +25,7 @@ class App extends Component {
             weather: result,
             forecasts: result.list,
             isLoaded: true,
+            city: result.city.name,
           });
         },
         (error) => {
@@ -60,10 +61,12 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="title">5-Day Forecast</h1>
+        <h3 className="location">{this.state.city}</h3>
         <section className="weather-cards">
           {Object.keys(this.state.forecasts).map(key => (
               <WeatherCard 
                 key={key}
+                id={key}
                 forecasts={this.state.forecasts[key]}
                 className="weather-card"
                 convertTempF={this.convertTempF}
@@ -72,7 +75,7 @@ class App extends Component {
               />
           ))}
         </section>
-        <ConvertTemp 
+        <ConvertTempButton 
           farhenheitUnits={this.farhenheitUnits}
           celciusUnits={this.celciusUnits}
           units={this.state.tempUnit}

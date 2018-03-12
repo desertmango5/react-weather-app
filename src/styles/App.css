@@ -1,8 +1,17 @@
 .title {
   font-size: 3rem;
   text-align: center;
-  margin: 5rem;
+  margin: 5rem 0 1rem 0;
   line-height: 3.5rem;
+}
+
+.location {
+  text-align: center;
+  color: #aaa;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.25rem;
+  margin-bottom: 2rem;
 }
 
 .weather-cards {
