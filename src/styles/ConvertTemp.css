@@ -1,0 +1,39 @@
+:root {
+  --radius: 1rem;
+  --inactive-bg-color: rgba(128,128,128,0.3);
+  --active-bg-color: rgba(34,139,34,0.3);
+}
+
+.convert {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.f,
+.c {
+  padding: 1rem 1.5rem;
+  margin: 0;
+  border: none;
+  background: var(--inactive-bg-color);
+}
+
+.f {
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+}
+
+.c {
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+.active {
+  background: var(--active-bg-color);
+}
+
+.f:hover,
+.c:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
