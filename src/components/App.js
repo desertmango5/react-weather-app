@@ -75,6 +75,7 @@ class App extends Component {
         <ConvertTemp 
           farhenheitUnits={this.farhenheitUnits}
           celciusUnits={this.celciusUnits}
+          units={this.state.tempUnit}
         />
       </div>
     );

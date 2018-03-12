@@ -3,12 +3,14 @@ import '../styles/ConvertTemp.css';
 
 class ConvertTemp extends React.Component {
   render() {
-    const { farhenheitUnits, celciusUnits } = this.props;
+    const { farhenheitUnits, celciusUnits, units } = this.props;
+    const fUnits = units === 'F' ? 'f active' : 'f';
+    const cUnits = units === 'C' ? 'c active' : 'c';
 
     return (
       <div className="convert">
-        <button onClick={farhenheitUnits} className="f active">F</button>
-        <button onClick={celciusUnits} className="c">C</button>
+        <button onClick={farhenheitUnits} className={fUnits}>&deg;F</button>
+        <button onClick={celciusUnits} className={cUnits}>&deg;C</button>
       </div>
     );
   }
