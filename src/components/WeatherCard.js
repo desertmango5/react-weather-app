@@ -3,25 +3,27 @@ import '../styles/WeatherCard.css';
 
 class WeatherCard extends React.Component {
   render() {
-    const high = this.props.forecasts.main.temp_max;
-    const low = this.props.forecasts.main.temp_min;
     const {
-            convertTempF, convertTempC, tempUnit, 
+          day, high, low, icon, isLoaded, tempUnit, 
           } = this.props;
-    const weather = this.props.forecasts.weather[0];
+
+    const tempHigh = tempUnit === 'F' ? high.fahrenheit : high.celsius;
+    const tempLow = tempUnit === 'F' ? low.fahrenheit : low.celsius;
 
     return (
-      <div className="weather-card">
-        <p className="weather-card__day" />
-        <img src={`http://openweathermap.org/img/w/${weather.icon}.png`} alt="forecast icon" className="weather-card__icon" />
-        <section className="weather-card__temp">
-          <p className="weather-card__temp-high">
-            {tempUnit === 'F' ? `${convertTempF(high)}` : `${convertTempC(high)}`}&deg;
-          </p>
-          <p className="weather-card__temp-low">
-            {tempUnit === 'F' ? `${convertTempF(low)}` : `${convertTempC(low)}`}&deg;
-          </p>
-        </section>
+      <div>
+        {
+          isLoaded && (
+            <div className="weather-card">
+              <p className="weather-card__day">{day}</p>
+              <img src={icon} alt="forecast icon" className="weather-card__icon" />
+              <section className="weather-card__temp">
+                <p className="weather-card__temp-high" >{tempHigh}&deg;</p>
+                <p className="weather-card__temp-low" >{tempLow}&deg;</p>
+              </section>
+            </div>
+          )
+        }
       </div>
     );
   }

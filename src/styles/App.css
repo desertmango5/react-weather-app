@@ -14,6 +14,14 @@
   margin-bottom: 2rem;
 }
 
+.loading {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 100;
+  color: #aaa;
+  margin-top: 10rem;
+}
+
 .weather-cards {
   display: flex;
   justify-content: center;
@@ -22,10 +30,10 @@
 }
 
 .weather-card {
-  margin: 0.5rem;
+  margin: 1rem;
 }
 
-.weather-card:first-child {
-  border: 1px solid #ddd;
+.weather-card:hover {
   background: #eee;
+  cursor: pointer;
 }

@@ -7,25 +7,30 @@ import ConvertTempButton from './ConvertTempButton';
 
 class App extends Component {
   state = {
-    weather: {},
     isLoaded: false,
     error: null,
-    forecasts: {},
     tempUnit: 'F',
-    city: null,
+    current: {},
+    location: {},
+    forecast: {},
   };
 
-  // connect to Open Weather API
+  
   componentDidMount() {
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?q=London&mode=json&APPID=${apiKey}`)
+    this.getWeather();
+  };
+  
+  // connect to weather API
+  getWeather = () => {
+    fetch(`http://api.wunderground.com/api/${apiKey}/forecast/geolookup/conditions/q/IN/Bremen.json`)
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
-            weather: result,
-            forecasts: result.list,
             isLoaded: true,
-            city: result.city.name,
+            current: result.current_observation,
+            location: result.location,
+            forecast: result.forecast,
           });
         },
         (error) => {
@@ -35,16 +40,6 @@ class App extends Component {
           });
         }
       )
-  };
-
-  convertTempF = (temp) => {
-    const f = (((temp - 273.15) * 1.8) + 32);
-    return Math.round(f);
-  };
-  
-  convertTempC = (temp) => {
-    const c = (temp - 273.15);
-    return Math.round(c);
   };
 
   farhenheitUnits = () => {
@@ -58,27 +53,42 @@ class App extends Component {
   }
 
   render() {
+    const { isLoaded, forecast } = this.state;
+    const forecasts = forecast.simpleforecast;
+
     return (
       <div className="App">
-        <h1 className="title">5-Day Forecast</h1>
-        <h3 className="location">{this.state.city}</h3>
-        <section className="weather-cards">
-          {Object.keys(this.state.forecasts).map(key => (
-              <WeatherCard 
-                key={key}
-                id={key}
-                forecasts={this.state.forecasts[key]}
-                className="weather-card"
-                convertTempF={this.convertTempF}
-                convertTempC={this.convertTempC}
-                tempUnit={this.state.tempUnit}
-              />
-          ))}
-        </section>
+        <h1 className="title">4-Day Outlook</h1>
+        <h3 className="location">{this.state.location.city}</h3>
+        {
+          !isLoaded && (
+            <h3 className="loading">Loading...</h3>
+          )
+        }
+        {
+          isLoaded && (
+            <div className="weather-cards">
+              {forecasts.forecastday.map((data) => (
+                <section key={data.period}>
+                    <WeatherCard 
+                      className="weather-card"
+                      tempUnit={this.state.tempUnit}
+                      isLoaded={this.state.isLoaded}
+                      icon={data.icon_url}
+                      high={data.high}
+                      low={data.low}
+                      day={data.date.weekday_short}
+                    />
+                </section>
+              ))}
+            </div>
+          )
+        }
         <ConvertTempButton 
           farhenheitUnits={this.farhenheitUnits}
           celciusUnits={this.celciusUnits}
           units={this.state.tempUnit}
+          isLoaded={this.state.isLoaded}
         />
       </div>
     );
