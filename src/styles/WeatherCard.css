@@ -1,7 +1,7 @@
 :root {
-  --day-color: #999;
-  --high-color: #888;
-  --low-color: #bbb;
+  --day-color: #333;
+  --high-color: #444;
+  --low-color: #777;
 }
 
 /* WEATHER CARD COMPONENT */
