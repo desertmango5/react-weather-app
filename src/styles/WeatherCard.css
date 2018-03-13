@@ -5,6 +5,10 @@
 }
 
 /* WEATHER CARD COMPONENT */
+a {
+  text-decoration: none;
+}
+
 .weather-card {
   display: flex;
   flex-direction: column;

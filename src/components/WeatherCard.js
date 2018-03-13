@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/WeatherCard.css';
 
 class WeatherCard extends React.Component {
@@ -15,12 +16,14 @@ class WeatherCard extends React.Component {
         {
           isLoaded && (
             <div className="weather-card">
-              <p className="weather-card__day">{day}</p>
-              <img src={icon} alt="forecast icon" className="weather-card__icon" />
-              <section className="weather-card__temp">
-                <p className="weather-card__temp-high" >{tempHigh}&deg;</p>
-                <p className="weather-card__temp-low" >{tempLow}&deg;</p>
-              </section>
+              <Link to={`/forecast/${day}`}>
+                <p className="weather-card__day">{day}</p>
+                <img src={icon} alt="forecast icon" className="weather-card__icon" />
+                <section className="weather-card__temp">
+                  <p className="weather-card__temp-high" >{tempHigh}&deg;</p>
+                  <p className="weather-card__temp-low" >{tempLow}&deg;</p>
+                </section>
+              </Link>
             </div>
           )
         }

@@ -6,7 +6,7 @@ import WeatherCard from './WeatherCard';
 import ConvertTempButton from './ConvertTempButton';
 
 class App extends Component {
-  state = {
+  state = {               // eslint-disable-line no-alert
     isLoaded: false,
     error: null,
     tempUnit: 'F',
@@ -22,7 +22,7 @@ class App extends Component {
   
   // connect to weather API
   getWeather = () => {
-    fetch(`http://api.wunderground.com/api/${apiKey}/forecast/geolookup/conditions/q/IN/Bremen.json`)
+    fetch(`http://api.wunderground.com/api/${apiKey}/forecast/geolookup/conditions/q/az/phoenix.json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -53,13 +53,19 @@ class App extends Component {
   }
 
   render() {
-    const { isLoaded, forecast } = this.state;
+    const { isLoaded, forecast, location } = this.state;
     const forecasts = forecast.simpleforecast;
 
     return (
       <div className="App">
         <h1 className="title">4-Day Outlook</h1>
-        <h3 className="location">{this.state.location.city}</h3>
+        {
+          isLoaded && (
+            <h3 className="location">
+              {location.city}, {location.state}, {location.country}
+            </h3>
+          )
+        }
         {
           !isLoaded && (
             <h3 className="loading">Loading...</h3>
