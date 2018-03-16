@@ -4,18 +4,20 @@ import '../styles/ConvertTemp.css';
 class ConvertTempButton extends React.Component {
   render() {
     const {
-          farhenheitUnits, celciusUnits, units, isLoaded, 
+          units, isLoaded, toggleUnits,
           } = this.props;
-    const fUnits = units === 'F' ? 'f active' : 'f';
-    const cUnits = units === 'C' ? 'c active' : 'c';
+    const unitToggle = units === 'F' ? 'fahrenheit' : 'celsius';
+    const unit = units === 'F' ? 'F' : 'C';
 
     return (
-      <div>
+      <div className="button">
         {
           isLoaded && (
-            <div className="convert">
-              <button onClick={farhenheitUnits} className={fUnits}>&deg;F</button>
-              <button onClick={celciusUnits} className={cUnits}>&deg;C</button>
+            <div 
+              onClick={toggleUnits}
+              className="convert__annimation"
+            >
+              <span className={unitToggle}>&deg;{unit}</span>
             </div>
           )
         }

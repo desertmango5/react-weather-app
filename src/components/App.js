@@ -42,13 +42,8 @@ class App extends Component {
       )
   };
 
-  farhenheitUnits = () => {
-    const unit = this.state.tempUnit === 'F' ? 'F' : 'F';
-    this.setState({ tempUnit: unit });
-  }
-  
-  celciusUnits = () => {
-    const unit = this.state.tempUnit === 'C' ? 'C' : 'C';
+  toggleUnits = () => {
+    const unit = this.state.tempUnit === 'F' ? 'C' : 'F';
     this.setState({ tempUnit: unit });
   }
 
@@ -91,8 +86,8 @@ class App extends Component {
           )
         }
         <ConvertTempButton 
-          farhenheitUnits={this.farhenheitUnits}
-          celciusUnits={this.celciusUnits}
+          className="convert-button"
+          toggleUnits={this.toggleUnits}
           units={this.state.tempUnit}
           isLoaded={this.state.isLoaded}
         />
