@@ -15,14 +15,14 @@ class App extends Component {
     forecast: {},
   };
 
-  
+    
   componentDidMount() {
     this.getWeather();
   };
   
   // connect to weather API
   getWeather = () => {
-    fetch(`http://api.wunderground.com/api/${apiKey}/forecast/geolookup/conditions/q/az/phoenix.json`)
+    fetch(`http://api.wunderground.com/api/${apiKey}/forecast/geolookup/conditions/q/autoip.json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -47,18 +47,19 @@ class App extends Component {
     this.setState({ tempUnit: unit });
   }
 
+
   render() {
     const { isLoaded, forecast, location } = this.state;
     const forecasts = forecast.simpleforecast;
-
     const results = !isLoaded ? 'result-loading' : 'result-loaded';
+    const country = location.country_iso3166;
 
     return (
       <div className="App">
         {
           !isLoaded && (
             <h3 className="loading">
-              Loading...
+              Loading your data...
             </h3>
           )
         }
@@ -68,7 +69,7 @@ class App extends Component {
               <div>
                 <h1 className="title">4-Day Outlook</h1>
                 <h3 className="location">
-                  {location.city}, {location.state}, {location.country}
+                  {location.city}, {country}
                 </h3>
               </div>
             )
