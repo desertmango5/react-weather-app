@@ -39,3 +39,11 @@
   box-shadow: 0 0 3px orange;
 }
 
+.result-loading {
+  opacity: 0;
+}
+
+.result-loaded {
+  opacity: 1;
+  transition: 0.6s ease-in all;
+}

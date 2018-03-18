@@ -15,7 +15,7 @@ class ConvertTempButton extends React.Component {
           isLoaded && (
             <div 
               onClick={toggleUnits}
-              className="convert__annimation"
+              className="convert__animation"
             >
               <span className={unitToggle}>&deg;{unit}</span>
             </div>

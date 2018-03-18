@@ -51,47 +51,56 @@ class App extends Component {
     const { isLoaded, forecast, location } = this.state;
     const forecasts = forecast.simpleforecast;
 
+    const results = !isLoaded ? 'result-loading' : 'result-loaded';
+
     return (
       <div className="App">
-        <h1 className="title">4-Day Outlook</h1>
         {
-          isLoaded && (
-            <h3 className="location">
-              {location.city}, {location.state}, {location.country}
+          !isLoaded && (
+            <h3 className="loading">
+              Loading...
             </h3>
           )
         }
-        {
-          !isLoaded && (
-            <h3 className="loading">Loading...</h3>
-          )
-        }
-        {
-          isLoaded && (
-            <div className="weather-cards">
-              {forecasts.forecastday.map((data) => (
-                <section key={data.period}>
-                    <WeatherCard 
-                      className="weather-card"
-                      tempUnit={this.state.tempUnit}
-                      isLoaded={this.state.isLoaded}
-                      icon={data.icon_url}
-                      high={data.high}
-                      low={data.low}
-                      day={data.date.weekday_short}
-                    />
-                </section>
-              ))}
-            </div>
-          )
-        }
-        <ConvertTempButton 
-          className="convert-button"
-          toggleUnits={this.toggleUnits}
-          units={this.state.tempUnit}
-          isLoaded={this.state.isLoaded}
-        />
+        <div className={results}>
+          {
+            isLoaded && (
+              <div>
+                <h1 className="title">4-Day Outlook</h1>
+                <h3 className="location">
+                  {location.city}, {location.state}, {location.country}
+                </h3>
+              </div>
+            )
+          }
+          {
+            isLoaded && (
+              <div className="weather-cards">
+                {forecasts.forecastday.map((data) => (
+                  <section key={data.period}>
+                      <WeatherCard 
+                        className="weather-card"
+                        tempUnit={this.state.tempUnit}
+                        isLoaded={this.state.isLoaded}
+                        icon={data.icon_url}
+                        high={data.high}
+                        low={data.low}
+                        day={data.date.weekday_short}
+                      />
+                  </section>
+                ))}
+              </div>
+            )
+          }
+          <ConvertTempButton 
+            className="convert-button"
+            toggleUnits={this.toggleUnits}
+            units={this.state.tempUnit}
+            isLoaded={this.state.isLoaded}
+          />
+        </div>
       </div>
+
     );
   }
 }

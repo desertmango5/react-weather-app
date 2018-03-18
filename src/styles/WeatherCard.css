@@ -1,15 +1,13 @@
-:root {
-  --day-color: #333;
-  --high-color: #444;
-  --low-color: #777;
-}
-
 /* WEATHER CARD COMPONENT */
+
 a {
   text-decoration: none;
 }
 
 .weather-card {
+  --day-color: #333;
+  --high-color: #444;
+  --low-color: #777;
   display: flex;
   flex-direction: column;
   align-items: center;
