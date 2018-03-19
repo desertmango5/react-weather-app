@@ -5,10 +5,8 @@
 **Features to Include:**
 
 * 4-day forecast from Wunderground.com Weather API
-* Click on a day to see additional weather details
-  * Use React Router to display hourly forecast for day `/name-of-day`
-* Experiment with vx graphics library
-
+* CSS transitions
+* create a CSS toggle for converting between fahrenheit and celsius
 ---
 
-![React Weather App](https://github.com/MichaelKeithM/images/blob/master/react-weather-app2.jpg)
+![React Weather App](https://github.com/MichaelKeithM/images/blob/master/react-weather-app3.jpg)
